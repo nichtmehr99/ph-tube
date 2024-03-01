@@ -1,38 +1,44 @@
-const btnContainer = document.getElementById('btn-container')
-const cardContainer = document.getElementById('card-container')
-const errorContainer = document.getElementById('error-container')
-let selectedCategory = 1000
+const btnContainer = document.getElementById("btn-container");
+const cardContainer = document.getElementById("card-container");
+const errorContainer = document.getElementById("error-container");
+let selectedCategory = 1000;
 const fetchCategories = () => {
-    const url = 'https://openapi.programming-hero.com/api/videos/categories'
-    fetch(url)
+  const url = "https://openapi.programming-hero.com/api/videos/categories";
+  fetch(url)
     .then((res) => res.json())
-    .then(({data}) => {
-        data.forEach(card => {
-            const newBtn = document.createElement('button')
-            newBtn.className = 'btn btn-neutral'
-            newBtn.innerText = card.category
-            newBtn.addEventListener('click', () => fetchDataByCategories(card.category_id))
-            btnContainer.appendChild(newBtn)
-
+    .then(({ data }) => {
+      data.forEach((card) => {
+        const newBtn = document.createElement("button");
+        newBtn.className = "btn-category btn btn-neutral";
+        newBtn.innerText = card.category;
+        newBtn.addEventListener("click", () => {
+          fetchDataByCategories(card.category_id);
+          const allBtn = document.querySelectorAll(".btn-category");
+          for (const btn of allBtn) {
+            btn.classList.remove("bg-orange-600");
+          }
+          newBtn.classList.add("bg-orange-600");
         });
-    })
-}
+        btnContainer.appendChild(newBtn);
+      });
+    });
+};
 
 const fetchDataByCategories = (categoryId) => {
-    selectedCategory = categoryId
-    const url = `https://openapi.programming-hero.com/api/videos/category/${categoryId}`
-    fetch(url)
+  selectedCategory = categoryId;
+  const url = `https://openapi.programming-hero.com/api/videos/category/${categoryId}`;
+  fetch(url)
     .then((res) => res.json())
-    .then(({data}) => {
-        if(data.length === 0 ){
-            errorContainer.classList.remove('hidden')
-        }else{
-            errorContainer.classList.add('hidden')
-        }
-        cardContainer.innerText = ''
-        data.forEach((card) => {
-            const newCard = document.createElement('div')
-            newCard.innerHTML = `
+    .then(({ data }) => {
+      if (data.length === 0) {
+        errorContainer.classList.remove("hidden");
+      } else {
+        errorContainer.classList.add("hidden");
+      }
+      cardContainer.innerText = "";
+      data.forEach((card) => {
+        const newCard = document.createElement("div");
+        newCard.innerHTML = `
             <div class="card w-96 h-96 bg-base-100 shadow-xl">
             <figure>
               <img src="${card.thumbnail}" alt="Shoes" />
@@ -48,13 +54,11 @@ const fetchDataByCategories = (categoryId) => {
               </div>
             </div>
           </div>
-            `
-            cardContainer.appendChild(newCard)
-            
-        });
-    })
-}
+            `;
+        cardContainer.appendChild(newCard);
+      });
+    });
+};
 
-
-fetchCategories()
-fetchDataByCategories(selectedCategory)
+fetchCategories();
+fetchDataByCategories(selectedCategory);
