@@ -30,22 +30,34 @@
       </div>
     </header>
     <main class="container mx-auto mt-4">
+      <div id="btn-container" class="flex justify-center gap-5 mb-10">
+<!-- 
+        <button class="btn btn-neutral">All</button>
+        <button class="btn btn-neutral">Music</button>
+        <button class="btn btn-neutral">Comedy</button>
+        <button class="btn btn-neutral">Drawing</button>
+         -->
+      </div>
         <!-- card static  -->
-      <div class="card w-96 bg-base-100 shadow-xl">
-        <figure>
-          <img src="shape.jpeg" alt="Shoes" />
-        </figure>
-        <div class="flex space-x-5 p-4">
-          <div class="w-14 mt-4">
-            <img class="rounded-full" src="noha.jpeg" alt="" />
-          </div>
-          <div>
-            <h2 class="text-xl">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <p>Views</p>
+        <!-- card container -->
+        <div id="card-container" class="grid grid-cols-3 justify-between items-center">
+          <div class="card w-96 bg-base-100 shadow-xl">
+            <figure>
+              <img src="shape.jpeg" alt="Shoes" />
+            </figure>
+            <div class="flex space-x-5 p-4">
+              <div class="w-14 mt-4">
+                <img class="rounded-full" src="noha.jpeg" alt="" />
+              </div>
+              <div>
+                <h2 class="text-xl">Shoes!</h2>
+                <p>If a dog chews</p>
+                <p>Views</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      
     </main>
     <script src="app.js"></script>
   </body>
